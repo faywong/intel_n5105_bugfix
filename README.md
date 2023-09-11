@@ -51,3 +51,5 @@ reboot
 
 [intel microcode repo "Pentium N6000/N6005, Celeron N4500/N4505/N5100/N5105"](https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/releases)
 
+[PVE 系统调整](https://gitee.com/callmer/pve_toss_notes/blob/master/03.PVE%E7%B3%BB%E7%BB%9F%E8%B0%83%E6%95%B4.md)
+
