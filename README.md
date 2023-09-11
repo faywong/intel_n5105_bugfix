@@ -41,10 +41,13 @@ reboot
 
 ## 方案 3
 
-## 疑问
+## 参考资料
 
 [外部 pve 论坛](https://forum.proxmox.com/threads/vm-freezes-irregularly.111494/page-31)
 
 [How to Install the Latest Microcode on Proxmox VE](https://cyrusyip.org/en/post/2023/01/31/install-microcode-on-proxmox/)
 
+[chiphell 跟踪帖](https://www.chiphell.com/forum.php?mod=viewthread&tid=2446440&extra=&ordertype=1&page=1&mobile=no)
+
+[intel microcode repo "Pentium N6000/N6005, Celeron N4500/N4505/N5100/N5105"](https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/releases)
 
