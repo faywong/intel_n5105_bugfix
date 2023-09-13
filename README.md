@@ -9,18 +9,19 @@
 # 历史方案
 
 ## 方案 1
-升级 linux 5.19 内核和 microcode 0x24000024
 
-升级内核略过。重点讲下安装 intel 微代码。
-同时配合：关闭 BIOS 的 c-stat，再将 pve 的 cpu 调度器设置成 powersave
+1. 升级 linux 5.19 内核
 
-确保 BIOS 配置 ok：
+升级内核略过。
+
+2. 确保 BIOS 配置：关闭 BIOS 的 c-stat，再将 pve 的 cpu 调度器设置成 powersave
 
 ```shell
 cat /proc/cmdline
 initrd=\EFI\proxmox\6.1.10-1-pve\initrd.img-6.1.10-1-pve root=ZFS=rpool/ROOT/pve-1 boot=zfs quiet intel_idle.max_cstate=1 intel_iommu=on iommu=pt mitigations=off i915.enable_guc=2 initcall_blacklist=sysfb_init nvme_core.default_ps_max_latency_us=14900
 ```
 
+3. 重点讲下安装 intel 微代码 ``0x24000024`` 版本：
 
 ```shell
 apt update
@@ -28,7 +29,7 @@ apt install intel-microcode
 reboot
 ```
 
-重启后用之前的命令确认intel-microcode版本是0x24000024
+重启后用之前的命令确认intel-microcode版本是 ``0x24000024``
 
 ```shell
 [Thu Mar 30 14:22:27 2023] microcode: microcode updated early to revision 0x24000024, date = 2022-09-02
