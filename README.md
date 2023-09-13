@@ -15,6 +15,9 @@
 升级内核略过。
 
 2. 确保 BIOS 配置：关闭 BIOS 的 c-stat，再将 pve 的 cpu 调度器设置成 powersave
+   N5105 driver intel_pstate
+   安装：cpufrequtils
+   将调度器设置成 powersave
 
 ```shell
 cat /proc/cmdline
