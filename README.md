@@ -12,7 +12,7 @@
 
 1. 升级 linux 5.19 内核
 
-升级内核略过。
+    升级内核操作略过。
 
 2. 确保 BIOS 配置：关闭 BIOS 的 c-stat，再将 pve 的 cpu 调度器设置成 powersave
   
