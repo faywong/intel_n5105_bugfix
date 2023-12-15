@@ -42,6 +42,28 @@ reboot
 [Thu Mar 30 14:22:28 2023] microcode: sig=0x906c0, pf=0x1, revision=0x24000024
 ```
 
+建议后续不要随意升级 Linux 内核，避免 microcode 不生效。
+比如锁死在 ``6.1.10-1-pve`` 版本内核。
+
+1.查看系统有多少个内核  
+dpkg --get-selections |grep kernel  
+  
+2.指定内核版本   
+proxmox-boot-tool kernel pin 6.1.10-1-pve
+	  
+更新 grub  
+update-grub  
+重启  
+  
+3.卸载不用内核版本  
+dpkg --purge --force-remove-essential pve-kernel-5.15.104-1-pve  
+把不用的内核删除完成后，更新引导菜单  
+update-grub  
+查看启动菜单  
+cat /boot/grub/grub.cfg |grep menuentry  
+重启PVE  
+reboot
+
 ## 方案 2
 
 刷写 BIOS 方式:
