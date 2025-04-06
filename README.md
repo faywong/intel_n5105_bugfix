@@ -1,4 +1,4 @@
-# intel_n5105_bugfix
+# 修复 intel n5105/n5100 cpu 断流问题的技术方案
 
 # 问题现象
 
