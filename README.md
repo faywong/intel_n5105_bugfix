@@ -1,6 +1,7 @@
 # 修复 intel n5105/n5100 cpu 断流问题的办法
 
 # 问题现象
+使用虚拟化的方式安装客户机系统后（典型场景是 proxmox 里 all in one 安装各类 linux、openwrt...）：
 
 * VM 系统僵死（Freeze）
 * 重启（reboot）
