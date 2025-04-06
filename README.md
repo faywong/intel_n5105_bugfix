@@ -1,4 +1,4 @@
-# 修复 intel n5105/n5100 cpu 断流问题的技术方案
+# 修复 intel n5105/n5100 cpu 断流问题的办法
 
 # 问题现象
 
@@ -53,6 +53,9 @@ reboot
 [Thu Mar 30 14:22:28 2023] microcode: sig=0x906c0, pf=0x1, revision=0x24000024
 ```
 至此大功告成。
+
+可能以上步骤中，BIOS 刷写不是必备的，因为我尝试过多种办法，其后果叠在在一起，如今已无法回滚其中部分操作来验证。若有后来者甄别出不必要的步骤，请不吝赐教。
+
 ## 参考资料
 
 [外部 pve 论坛](https://forum.proxmox.com/threads/vm-freezes-irregularly.111494/page-31)
