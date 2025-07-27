@@ -44,7 +44,7 @@ apt-mark hold pve-kernel-6.1.10-1-pve linux-image-6.1.10-1-pve linux-headers-6.1
   ```shell
   update-grub
   ```  
-2.5 设置 grub 启动菜单  
+2.5 设置 grub 默认启动菜单  
   ```shell
   root@pve:/boot/grub# proxmox-boot-tool kernel pin 6.1.10-1-pve
   Setting '6.1.10-1-pve' as grub default entry and running update-grub.
