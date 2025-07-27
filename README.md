@@ -36,24 +36,46 @@ apt install pve-kernel-6.1
 proxmox-boot-tool kernel pin 6.1.10-1-pve  
 2.3 告知 apt 锁定内核软件包，不要更新它  
 apt-mark hold pve-kernel-6.1.10-1-pve linux-image-6.1.10-1-pve linux-headers-6.1.10-1-pve  
-2.4 卸载不用内核版本  
-dpkg --purge --force-remove-essential pve-kernel-5.15.104-1-pve  
-把不用的内核删除完成后，更新引导菜单  
-update-grub  
-查看启动菜单  
-cat /boot/grub/grub.cfg |grep menuentry  
-2.5 安装 intel 微代码 ``0x24000024`` 版本：  
-```shell
-apt update
-apt install intel-microcode
-reboot
-```
-重启后用之前的命令确认intel-microcode版本是 ``0x24000024``  
-```shell
-[Thu Mar 30 14:22:27 2023] microcode: microcode updated early to revision 0x24000024, date = 2022-09-02
-[Thu Mar 30 14:22:28 2023] microcode: sig=0x906c0, pf=0x1, revision=0x24000024
-```
-至此大功告成。
+2.4 卸载不用内核版本
+  ```shell
+  dpkg --purge --force-remove-essential pve-kernel-5.15.104-1-pve
+  ```
+  把不用的内核删除完成后，更新引导菜单   
+  ```shell
+  update-grub
+  ```  
+2.5 设置 grub 启动菜单  
+  ```shell
+  root@pve:/boot/grub# proxmox-boot-tool kernel pin 6.1.10-1-pve
+  Setting '6.1.10-1-pve' as grub default entry and running update-grub.
+  Generating grub configuration file ...
+  Found linux image: /boot/vmlinuz-6.8.12-13-pve
+  Found initrd image: /boot/initrd.img-6.8.12-13-pve
+  Found linux image: /boot/vmlinuz-6.1.10-1-pve
+  Found initrd image: /boot/initrd.img-6.1.10-1-pve
+  Found memtest86+ 64bit EFI image: /boot/memtest86+x64.efi
+  Adding boot menu entry for UEFI Firmware Settings ...
+  done
+  root@pve:/boot/grub# proxmox-boot-tool refresh
+  Running hook script 'proxmox-auto-removal'..
+  Running hook script 'zz-proxmox-boot'..
+  Re-executing '/etc/kernel/postinst.d/zz-proxmox-boot' in new private mount namespace..
+  No /etc/kernel/proxmox-boot-uuids found, skipping ESP sync.
+  ```
+2.6 安装 intel 微代码 ``0x24000024`` 版本：  
+  ```shell
+  apt update
+  apt install intel-microcode
+  reboot
+  ```
+  重启后用之前的命令确认intel-microcode版本是 ``0x24000024``  
+  ```shell
+  root@pve:/boot/grub# dmesg |grep -i microcode
+  [    0.130567] SRBDS: Vulnerable: No microcode
+  [    1.047732] microcode: sig=0x906c0, pf=0x1, revision=0x24000024
+  [    1.047783] microcode: Microcode Update Driver: v2.2.
+  ```
+  至此大功告成。
 
 可能以上步骤中，BIOS 刷写不是必备的，因为我尝试过多种办法，其后果叠在在一起，如今已无法回滚其中部分操作来验证。若有后来者甄别出不必要的步骤，请不吝赐教。
 
